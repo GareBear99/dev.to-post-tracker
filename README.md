@@ -1,5 +1,7 @@
 # dev.to-post-tracker
 
+Profile: https://dev.to/tizwildin
+
 Markdown draft tracker for DEV.to outreach posts across the TizWildin / ARC / Synth ecosystem.
 
 ## Current draft files

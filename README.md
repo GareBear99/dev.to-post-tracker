@@ -4,10 +4,11 @@ Profile: https://dev.to/tizwildin
 
 Markdown draft tracker and automation control plane for DEV.to outreach posts across the TizWildin / ARC / Synth ecosystem.
 
-This repo now has two jobs:
+This repo now has three jobs:
 
 1. Keep clean Markdown drafts for DEV.to publishing.
 2. Plan and host a Cloudflare Worker that detects newly published DEV.to posts and syndicates them safely.
+3. Optionally archive campaign receipts into MongoDB Atlas through a small collector API for long-term SEO/discovery tracking.
 
 ## Current draft files
 
@@ -34,6 +35,8 @@ KV duplicate check
 Format post by project family
         ↓
 Auto-post / draft / discovery lane
+        ↓
+Optional MongoDB Atlas archive collector
 ```
 
 ### Auto-post lane
@@ -76,6 +79,9 @@ These are not normal social-post targets. They are directory/listing/submission 
 | `docs/CLOUDFLARE_AUTOPOSTER_PLAN.md` | Setup plan and deployment instructions |
 | `docs/SYNDICATION_TARGETS.md` | Social/platform target strategy |
 | `docs/LIBHUNT_AND_DISCOVERY_LANE.md` | LibHunt and directory-submission strategy |
+| `docs/MONGODB_ATLAS_ARCHIVE_LAYER.md` | Optional Atlas archive/campaign database plan |
+| `data/schemas/mongodb-receipt.schema.json` | Receipt payload schema for archive collector |
+| `server/mongodb-archive-api/` | Optional Node/Express collector that writes receipts to Atlas |
 | `docs/DEVTO_POST_AUTOMATION_ROADMAP.md` | Versioned automation roadmap |
 | `Tools/DEVto-CLI.md` | Existing DEV.to CLI helper notes |
 
@@ -102,6 +108,10 @@ npx wrangler secret put MASTODON_TOKEN
 npx wrangler secret put DISCORD_WEBHOOK_URL
 npx wrangler secret put TELEGRAM_BOT_TOKEN
 npx wrangler secret put TELEGRAM_CHAT_ID
+
+# Optional Atlas archive collector webhook
+npx wrangler secret put ARCHIVE_WEBHOOK_URL
+npx wrangler secret put ARCHIVE_WEBHOOK_TOKEN
 ```
 
 Test locally:
@@ -117,6 +127,29 @@ Deploy:
 ```bash
 npx wrangler deploy
 ```
+
+
+## Optional MongoDB Atlas archive mode
+
+For v1, Cloudflare KV is enough. Use MongoDB Atlas when you want the bigger promotion brain: searchable post history, per-platform receipts, LibHunt/submission tasks, manual-approval queues, and project-level SEO tracking.
+
+```text
+Cloudflare KV = duplicate protection and last-run state
+MongoDB Atlas = campaign archive, dashboard data, and discovery/task history
+```
+
+The Worker does not require MongoDB. When `ARCHIVE_WEBHOOK_URL` is set, it sends a receipt to the optional collector in `server/mongodb-archive-api/`.
+
+```bash
+cd server/mongodb-archive-api
+npm install
+MONGODB_URI="mongodb+srv://..." \
+MONGODB_DB="tizwildin_syndication" \
+ARCHIVE_WEBHOOK_TOKEN="same-token-as-worker" \
+npm start
+```
+
+See `docs/MONGODB_ATLAS_ARCHIVE_LAYER.md` for collections, indexes, secrets, and security baseline.
 
 ## Recommended first live target set
 

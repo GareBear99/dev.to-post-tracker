@@ -61,3 +61,13 @@ Then add `/drafts` and `/approve` routes.
 - Mastodon/Bluesky/Discord/Telegram live.
 - Discovery lane tracker for LibHunt and curated list submissions.
 - Receipts dashboard for every article and target.
+
+## v0.3 — Atlas archive/campaign intelligence layer
+
+- Keep Cloudflare KV as the required v1 state store.
+- Add optional archive webhook output from the Worker.
+- Add MongoDB Atlas collector API scaffold.
+- Store long-term campaign history, target receipts, draft queues, and discovery tasks in Atlas.
+- Prepare future dashboard filtering by project, target, status, date, and lane.
+
+Atlas is not required for the first deploy. It becomes valuable when the system starts tracking FreeEQ8, ARC-Neuron LLMBuilder, AI Desk Meter / MuseMeter, Proto-Synth, Voxel Audio, and wider repo-promotion campaigns at the same time.

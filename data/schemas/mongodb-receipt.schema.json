@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://garebear99.github.io/dev.to-post-tracker/schemas/mongodb-receipt.schema.json",
+  "title": "DEV.to Syndication Receipt",
+  "type": "object",
+  "required": ["provider", "source", "receipt"],
+  "properties": {
+    "provider": {
+      "type": "string",
+      "examples": ["mongodb-atlas-collector"]
+    },
+    "source": {
+      "type": "string",
+      "examples": ["cloudflare-worker"]
+    },
+    "receipt": {
+      "type": "object",
+      "required": ["ok", "article", "targets", "processedAt"],
+      "properties": {
+        "ok": { "type": "boolean" },
+        "article": {
+          "type": "object",
+          "properties": {
+            "id": {},
+            "title": { "type": ["string", "null"] },
+            "url": { "type": ["string", "null"] },
+            "published_at": { "type": ["string", "null"] },
+            "tag_list": { "type": "array", "items": { "type": "string" } }
+          }
+        },
+        "targets": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "target": { "type": "string" },
+              "ok": { "type": "boolean" },
+              "mode": { "type": ["string", "null"] },
+              "url": { "type": ["string", "null"] },
+              "reason": { "type": ["string", "null"] },
+              "error": { "type": ["string", "null"] }
+            }
+          }
+        },
+        "context": { "type": "object" },
+        "processedAt": { "type": "string" }
+      }
+    }
+  }
+}

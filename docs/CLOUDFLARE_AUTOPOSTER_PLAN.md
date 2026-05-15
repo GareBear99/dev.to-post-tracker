@@ -121,3 +121,41 @@ This gives real distribution without risking community spam flags.
 3. Add project classifier so FreeEQ8 posts get audio/plugin tags while ARC posts get local-AI/open-source tags.
 4. Add a receipt dashboard generated from KV run history.
 5. Add a manual approval queue for draft-only targets.
+
+## Optional MongoDB Atlas archive upgrade
+
+Atlas is now treated as a v2 archive layer, not a hard dependency. The Worker continues to use Cloudflare KV for duplicate protection and last-run state. When `ARCHIVE_WEBHOOK_URL` is configured, the Worker posts a receipt payload to the archive collector after each successful run.
+
+Recommended split:
+
+```text
+Cloudflare KV
+- lastArticleUrl
+- lastRun
+- small article receipts
+- duplicate protection
+
+MongoDB Atlas
+- full receipt history
+- per-target status rows
+- draft-only manual approval queue
+- LibHunt/SaaSHub/AlternativeTo/awesome-list discovery tasks
+- future dashboard/search/filtering
+```
+
+Secrets to add only when archive mode is enabled:
+
+```bash
+npx wrangler secret put ARCHIVE_WEBHOOK_URL
+npx wrangler secret put ARCHIVE_WEBHOOK_TOKEN
+```
+
+The collector API lives in `server/mongodb-archive-api/` and expects:
+
+```bash
+MONGODB_URI="mongodb+srv://..."
+MONGODB_DB="tizwildin_syndication"
+ARCHIVE_WEBHOOK_TOKEN="same-token-used-by-worker"
+```
+
+See `docs/MONGODB_ATLAS_ARCHIVE_LAYER.md` for the full schema, collection plan, index plan, and security baseline.

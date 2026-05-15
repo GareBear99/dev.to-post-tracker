@@ -13,3 +13,10 @@ crons = ["0 * * * *"]
 binding = "STATE"
 id = "REPLACE_WITH_KV_NAMESPACE_ID"
 preview_id = "REPLACE_WITH_PREVIEW_KV_NAMESPACE_ID"
+
+[vars]
+# Keep Cloudflare KV as the required v1 state store. Atlas is optional through ARCHIVE_WEBHOOK_URL.
+DEVTO_USERNAME = "tizwildin"
+AUTOPOST_TARGETS = "mastodon,discord,telegram,libhunt"
+DEFAULT_ECOSYSTEM_TAG = "#BuildInPublic"
+ARCHIVE_PROVIDER = "mongodb-atlas-collector"

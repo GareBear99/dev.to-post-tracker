@@ -1,6 +1,6 @@
 const DEFAULT_DEV_USERNAME = "tizwildin";
 const DEFAULT_DEV_API_BASE = "https://dev.to/api";
-const USER_AGENT = "TizWildinDevToAutoPoster/0.2 (+https://github.com/GareBear99/dev.to-post-tracker)";
+const USER_AGENT = "TizWildinDevToAutoPoster/0.3 (+https://github.com/GareBear99/dev.to-post-tracker)";
 
 const CHANNELS = {
   mastodon: postToMastodon,
@@ -80,6 +80,7 @@ async function runAutoPoster(env, context = {}) {
   }
 
   const output = { ok: true, article: pickArticleFields(latest), targets: results, context, processedAt: new Date().toISOString() };
+  output.archive = await archiveReceiptIfEnabled({ env, receipt: output });
   await env.STATE.put("lastArticleUrl", latest.url);
   await env.STATE.put(`article:${latest.id || latest.slug || latest.url}`, JSON.stringify(output));
   await env.STATE.put("lastRun", JSON.stringify(output));
@@ -188,6 +189,41 @@ async function createDiscoveryOnlyResult({ target, article }) {
     articleUrl: article.url,
     action: "Use the discovery matrix to submit the relevant repo/article and record status."
   };
+}
+
+async function archiveReceiptIfEnabled({ env, receipt }) {
+  if (!env.ARCHIVE_WEBHOOK_URL) {
+    return { enabled: false, provider: env.ARCHIVE_PROVIDER || "cloudflare-kv-only" };
+  }
+
+  const headers = {
+    "Content-Type": "application/json",
+    "User-Agent": USER_AGENT
+  };
+  if (env.ARCHIVE_WEBHOOK_TOKEN) {
+    headers.Authorization = `Bearer ${env.ARCHIVE_WEBHOOK_TOKEN}`;
+  }
+
+  const payload = {
+    provider: env.ARCHIVE_PROVIDER || "mongodb-atlas-collector",
+    source: "cloudflare-worker",
+    receipt
+  };
+
+  try {
+    const response = await fetch(env.ARCHIVE_WEBHOOK_URL, {
+      method: "POST",
+      headers,
+      body: JSON.stringify(payload)
+    });
+    const body = await safeJson(response);
+    if (!response.ok) {
+      return { enabled: true, ok: false, status: response.status, body };
+    }
+    return { enabled: true, ok: true, status: response.status, body };
+  } catch (error) {
+    return { enabled: true, ok: false, error: String(error?.message || error) };
+  }
 }
 
 function parseTargets(raw) {

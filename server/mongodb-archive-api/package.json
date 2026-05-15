@@ -1,0 +1,18 @@
+{
+  "name": "devto-mongodb-archive-api",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Optional MongoDB Atlas archive collector for DEV.to syndication receipts.",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "dependencies": {
+    "@mongodb-js/zstd": "^1.2.2",
+    "express": "^4.19.2",
+    "mongodb": "^6.8.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

@@ -8,7 +8,10 @@ const required = [
   "docs/CLOUDFLARE_AUTOPOSTER_PLAN.md",
   "docs/SYNDICATION_TARGETS.md",
   "docs/LIBHUNT_AND_DISCOVERY_LANE.md",
-  "data/syndication-targets.json"
+  "docs/MONGODB_ATLAS_ARCHIVE_LAYER.md",
+  "data/syndication-targets.json",
+  "data/schemas/mongodb-receipt.schema.json",
+  "server/mongodb-archive-api/src/index.js"
 ];
 
 let ok = true;
@@ -20,7 +23,7 @@ for (const file of required) {
 }
 
 const worker = readFileSync("cloudflare-worker/src/index.js", "utf8");
-for (const term of ["mastodon", "discord", "telegram", "libhunt", "scheduled", "STATE"]) {
+for (const term of ["mastodon", "discord", "telegram", "libhunt", "scheduled", "STATE", "ARCHIVE_WEBHOOK_URL", "archiveReceiptIfEnabled"]) {
   if (!worker.includes(term)) {
     console.error(`Worker missing expected term: ${term}`);
     ok = false;
@@ -28,7 +31,7 @@ for (const term of ["mastodon", "discord", "telegram", "libhunt", "scheduled", "
 }
 
 const targets = JSON.parse(readFileSync("data/syndication-targets.json", "utf8"));
-for (const key of ["mastodon", "bluesky", "discord", "telegram", "libhunt"]) {
+for (const key of ["mastodon", "bluesky", "discord", "telegram", "libhunt", "mongodb_atlas"]) {
   if (!targets.targets[key]) {
     console.error(`Target matrix missing: ${key}`);
     ok = false;

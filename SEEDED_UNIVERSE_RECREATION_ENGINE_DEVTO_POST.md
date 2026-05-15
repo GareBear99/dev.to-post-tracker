@@ -256,6 +256,48 @@ That makes the project useful as an experimental foundation for:
 
 https://github.com/GareBear99/Seeded-Universe-Recreation-Engine
 
+## Related ARC / Synth Ecosystem Repos
+
+Seeded Universe Recreation Engine is part of a larger local-first ARC/Synth research ecosystem. The universe simulator is the seed-rooted simulation layer, but the larger architecture connects AI model growth, receipt authority, visual runtime shells, solar simulation, doctrine, language routing, and visual memory.
+
+Related projects:
+
+- **ARC-Neuron LLMBuilder** — local-first AI model lifecycle, benchmark receipts, candidate/incumbent promotion, and dataset-connected model growth.  
+  https://github.com/GareBear99/arc-neuron-llmbuilder-v1.0.0
+
+- **ARC-Core** — authority, receipts, event ledger, replay/rollback, and governed runtime control plane for ARC-style systems.  
+  https://github.com/GareBear99/ARC-Core
+
+- **Proto-Synth Grid Engine** — deterministic 2D simulation projected visually as 3D, blueprint geometry, Neural-Synth view, Voxel Directory, and programmable world/runtime surfaces.  
+  https://github.com/GareBear99/Proto-Synth_Grid_Engine
+
+- **Neo-VECTR Solar Sim NASA Standard** — seeded solar-system simulation direction with NASA-style physics framing, orbital structure, planetary state, and simulation validation goals.  
+  https://github.com/GareBear99/Neo-VECTR_Solar_Sim_NASA_Standard
+
+- **TT-101 Handbook** — doctrine layer for seeded universe handling, emergent life, communication ethics, signal bridging, and intervention rules.  
+  https://github.com/GareBear99/TT-101_Handbook
+
+- **ARC Language Module** — governed multilingual backend for language graph, routing, readiness, coverage reports, and future AI communication layers.  
+  https://github.com/GareBear99/arc-language-module
+
+- **ARC-StreamMemory** — local-first visual memory spine for AI-readable footage, screenshots, frame hashes, module attachments, and receipt-backed visual replay.  
+  https://github.com/GareBear99/ARC-StreamMemory
+
+Together, these repos form the larger architecture around deterministic simulation, local-first AI memory, governed receipts, language routing, visual replay, and Synth-style runtime interfaces.
+
+The ecosystem flow is:
+
+```text
+Seeded Universe Recreation Engine
+→ Proto-Synth Grid Engine as the visual/runtime shell
+→ ARC-Core as receipt authority
+→ ARC-Neuron LLMBuilder as the AI/model growth layer
+→ ARC Language Module as the communication/language layer
+→ ARC-StreamMemory as the visual memory/replay layer
+→ Neo-VECTR as the solar/planet simulation sibling
+→ TT-101 Handbook as the doctrine/canon layer
+```
+
 ## What I’m looking for
 
 I’m looking for feedback from:

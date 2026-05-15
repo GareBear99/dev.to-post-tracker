@@ -1,0 +1,84 @@
+{
+  "version": "0.2.0",
+  "updated": "2026-05-15",
+  "canonical_source": "DEV.to profile https://dev.to/tizwildin",
+  "policy": {
+    "auto_post": "Use only for API-friendly destinations where the account owner controls the destination and duplicate protection is enabled.",
+    "draft_only": "Use for communities that can flag blind automation as spam.",
+    "discovery_only": "Use for directories, alternative indexes, and awesome lists that require manual submission, PRs, or editorial review."
+  },
+  "targets": {
+    "mastodon": {
+      "lane": "auto_post",
+      "api": "POST /api/v1/statuses",
+      "secret_names": ["MASTODON_INSTANCE", "MASTODON_TOKEN"],
+      "best_for": ["open-source devlogs", "plugin updates", "ARC/AI updates"]
+    },
+    "bluesky": {
+      "lane": "planned_auto_post",
+      "api": "AT Protocol createRecord after session creation",
+      "secret_names": ["BLUESKY_HANDLE", "BLUESKY_APP_PASSWORD"],
+      "best_for": ["build in public", "release announcements", "developer network"]
+    },
+    "discord": {
+      "lane": "auto_post",
+      "api": "Incoming webhook",
+      "secret_names": ["DISCORD_WEBHOOK_URL"],
+      "best_for": ["owned community server", "release feed", "private audit logs"]
+    },
+    "telegram": {
+      "lane": "auto_post",
+      "api": "Bot API sendMessage",
+      "secret_names": ["TELEGRAM_BOT_TOKEN", "TELEGRAM_CHAT_ID"],
+      "best_for": ["public announcement channel", "lightweight release feed"]
+    },
+    "github_discussion": {
+      "lane": "draft_only",
+      "api": "GitHub GraphQL/REST after repo-specific discussion category is chosen",
+      "secret_names": ["GITHUB_TOKEN"],
+      "best_for": ["repo-local changelogs", "release discussion threads", "SEO persistence"]
+    },
+    "linkedin": {
+      "lane": "draft_only",
+      "api": "Restricted LinkedIn post APIs where approved",
+      "secret_names": [],
+      "best_for": ["professional summary", "funding credibility", "business-facing posts"]
+    },
+    "reddit": {
+      "lane": "draft_only",
+      "api": "Reddit API only with subreddit-specific rules and approval",
+      "secret_names": [],
+      "best_for": ["manual subreddit posts", "supportive technical communities"]
+    },
+    "facebook": {
+      "lane": "draft_only",
+      "api": "Meta APIs when approved; otherwise scheduler/manual",
+      "secret_names": [],
+      "best_for": ["music/project groups", "audience updates", "manual group posts"]
+    },
+    "libhunt": {
+      "lane": "discovery_only",
+      "api": "Submission/listing flow; monitor project pages and alternatives",
+      "secret_names": [],
+      "best_for": ["open-source discovery", "alternatives traffic", "repo credibility"]
+    },
+    "saashub": {
+      "lane": "discovery_only",
+      "api": "Directory profile/submission flow",
+      "secret_names": [],
+      "best_for": ["product alternative pages", "tool comparison SEO"]
+    },
+    "alternativeto": {
+      "lane": "discovery_only",
+      "api": "Directory profile/submission flow",
+      "secret_names": [],
+      "best_for": ["software alternatives", "non-developer discovery"]
+    },
+    "awesome_lists": {
+      "lane": "discovery_only",
+      "api": "Pull requests to curated GitHub lists",
+      "secret_names": [],
+      "best_for": ["high-trust backlinks", "category validation", "developer discovery"]
+    }
+  }
+}

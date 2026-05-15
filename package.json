@@ -1,0 +1,18 @@
+{
+  "name": "devto-post-tracker",
+  "version": "0.2.0",
+  "private": true,
+  "description": "DEV.to draft tracker plus Cloudflare Worker syndication planner for TizWildin / ARC ecosystem posts.",
+  "type": "module",
+  "scripts": {
+    "check": "node scripts/check-config.mjs",
+    "worker:dev": "wrangler dev cloudflare-worker/src/index.js --test-scheduled",
+    "worker:deploy": "wrangler deploy"
+  },
+  "devDependencies": {
+    "wrangler": "^4.0.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

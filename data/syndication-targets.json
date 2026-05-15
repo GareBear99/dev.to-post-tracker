@@ -1,5 +1,5 @@
 {
-  "version": "0.3.0",
+  "version": "0.4.0",
   "updated": "2026-05-15",
   "canonical_source": "DEV.to profile https://dev.to/tizwildin",
   "policy": {
@@ -10,7 +10,7 @@
   "targets": {
     "mastodon": {
       "lane": "auto_post",
-      "api": "POST /api/v1/statuses",
+      "api": "POST /api/v1/statuses with Idempotency-Key",
       "secret_names": [
         "MASTODON_INSTANCE",
         "MASTODON_TOKEN"

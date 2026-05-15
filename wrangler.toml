@@ -17,6 +17,11 @@ preview_id = "REPLACE_WITH_PREVIEW_KV_NAMESPACE_ID"
 [vars]
 # Keep Cloudflare KV as the required v1 state store. Atlas is optional through ARCHIVE_WEBHOOK_URL.
 DEVTO_USERNAME = "tizwildin"
-AUTOPOST_TARGETS = "mastodon,discord,telegram,libhunt"
+AUTOPOST_TARGETS = "mastodon"
 DEFAULT_ECOSYSTEM_TAG = "#BuildInPublic"
+POST_MAX_CHARS = "480"
+MASTODON_VISIBILITY = "public"
+MASTODON_LANGUAGE = "en"
+# Set to "true" for first deployment smoke tests. /preview is always non-posting.
+AUTOPOST_DRY_RUN = "false"
 ARCHIVE_PROVIDER = "mongodb-atlas-collector"

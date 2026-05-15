@@ -30,11 +30,12 @@ The starter Worker in `cloudflare-worker/src/index.js` currently supports:
 
 - `/health` — simple health check.
 - `/last` — shows the last processed article and last run receipt.
-- `/run` — manually triggers a run when authorized by `RUN_TOKEN`.
+- `/preview` — previews the latest formatted post without live posting or mutating KV.
+- `/run` — manually triggers a run when authorized by `RUN_TOKEN`. Supports `?dry_run=1` and `?force=1`.
 - Scheduled polling through `wrangler.toml` cron.
 - DEV.to public article fetch for `DEVTO_USERNAME`.
 - KV duplicate protection through `STATE`.
-- Auto-post lane: Mastodon.
+- Auto-post lane: Mastodon, with per-article idempotency keys.
 - Auto-post lane: Discord webhook.
 - Auto-post lane: Telegram bot channel.
 - Planned lane: Bluesky / AT Protocol.
@@ -76,10 +77,12 @@ Only add the secrets for targets you actually enable.
 ```toml
 [vars]
 DEVTO_USERNAME = "tizwildin"
-AUTOPOST_TARGETS = "mastodon,discord,telegram,libhunt"
+AUTOPOST_TARGETS = "mastodon"
 DEFAULT_ECOSYSTEM_TAG = "BuildInPublic"
 MAX_HASHTAGS = "5"
+POST_MAX_CHARS = "480"
 MASTODON_VISIBILITY = "public"
+MASTODON_LANGUAGE = "en"
 ```
 
 6. Test locally:
@@ -87,6 +90,8 @@ MASTODON_VISIBILITY = "public"
 ```bash
 npx wrangler dev cloudflare-worker/src/index.js --test-scheduled
 curl http://localhost:8787/health
+curl -H "Authorization: Bearer $RUN_TOKEN" http://localhost:8787/preview
+curl -H "Authorization: Bearer $RUN_TOKEN" "http://localhost:8787/run?dry_run=1"
 curl -H "Authorization: Bearer $RUN_TOKEN" http://localhost:8787/run
 ```
 
@@ -109,7 +114,7 @@ Do not blindly auto-post everywhere. Use three lanes:
 ## Recommended first production target set
 
 ```toml
-AUTOPOST_TARGETS = "mastodon,discord,telegram,libhunt"
+AUTOPOST_TARGETS = "mastodon"
 ```
 
 This gives real distribution without risking community spam flags.

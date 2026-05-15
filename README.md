@@ -41,7 +41,7 @@ Optional MongoDB Atlas archive collector
 
 ### Auto-post lane
 
-These are safe first because they are controlled feeds or API-friendly destinations:
+These are safe first because they are controlled feeds or API-friendly destinations. v0.4.0 defaults live posting to Mastodon only until the first deployment is proven:
 
 - Mastodon
 - Discord webhook
@@ -77,6 +77,7 @@ These are not normal social-post targets. They are directory/listing/submission 
 | `wrangler.toml` | Cloudflare Worker config with hourly cron and KV binding placeholder |
 | `data/syndication-targets.json` | Machine-readable target matrix |
 | `docs/CLOUDFLARE_AUTOPOSTER_PLAN.md` | Setup plan and deployment instructions |
+| `docs/MASTODON_AUTOPUBLISH_SETUP.md` | Mastodon-specific Cloudflare setup and smoke-test guide |
 | `docs/SYNDICATION_TARGETS.md` | Social/platform target strategy |
 | `docs/LIBHUNT_AND_DISCOVERY_LANE.md` | LibHunt and directory-submission strategy |
 | `docs/MONGODB_ATLAS_ARCHIVE_LAYER.md` | Optional Atlas archive/campaign database plan |
@@ -105,6 +106,7 @@ Paste the returned IDs into `wrangler.toml`, then add secrets only for the enabl
 npx wrangler secret put RUN_TOKEN
 npx wrangler secret put MASTODON_INSTANCE
 npx wrangler secret put MASTODON_TOKEN
+# Optional: only after Mastodon is proven
 npx wrangler secret put DISCORD_WEBHOOK_URL
 npx wrangler secret put TELEGRAM_BOT_TOKEN
 npx wrangler secret put TELEGRAM_CHAT_ID
@@ -114,11 +116,18 @@ npx wrangler secret put ARCHIVE_WEBHOOK_URL
 npx wrangler secret put ARCHIVE_WEBHOOK_TOKEN
 ```
 
-Test locally:
+Test locally without posting first:
 
 ```bash
 npx wrangler dev cloudflare-worker/src/index.js --test-scheduled
 curl http://localhost:8787/health
+curl -H "Authorization: Bearer $RUN_TOKEN" http://localhost:8787/preview
+curl -H "Authorization: Bearer $RUN_TOKEN" "http://localhost:8787/run?dry_run=1"
+```
+
+Live manual run after the preview looks right:
+
+```bash
 curl -H "Authorization: Bearer $RUN_TOKEN" http://localhost:8787/run
 ```
 
@@ -128,6 +137,19 @@ Deploy:
 npx wrangler deploy
 ```
 
+
+
+## Mastodon autopublish quick path
+
+The Worker uses the Mastodon status API with a user token that has `write:statuses` scope. The main safety controls are:
+
+- `/preview` — formats the latest DEV.to post without posting or changing KV.
+- `/run?dry_run=1` — runs the target loop but returns dry-run drafts for live targets.
+- `/run?force=1` — intentionally reprocesses the latest post if you need to repost.
+- Mastodon `Idempotency-Key` — derived from the DEV.to article key to reduce duplicate-post risk.
+- Cloudflare KV — stores `lastArticleUrl`, `lastRun`, and stable per-article receipts.
+
+See `docs/MASTODON_AUTOPUBLISH_SETUP.md` for the exact setup flow.
 
 ## Optional MongoDB Atlas archive mode
 
@@ -156,10 +178,10 @@ See `docs/MONGODB_ATLAS_ARCHIVE_LAYER.md` for collections, indexes, secrets, and
 Start with:
 
 ```toml
-AUTOPOST_TARGETS = "mastodon,discord,telegram,libhunt"
+AUTOPOST_TARGETS = "mastodon"
 ```
 
-Why: Mastodon/Discord/Telegram can be automated cleanly, while LibHunt stays as a discovery checklist receipt instead of a blind post.
+Why: prove the Mastodon lane first. After that, expand to `mastodon,discord,telegram,libhunt`; LibHunt remains a discovery checklist receipt instead of a blind post.
 
 ## Seeded Universe ecosystem update
 

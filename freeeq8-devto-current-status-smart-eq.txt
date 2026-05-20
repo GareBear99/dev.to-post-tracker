@@ -1,0 +1,245 @@
+---
+title: FreeEQ8 Current Status: Open-Source Parametric EQ, Rekkerd Coverage, and the Road to Smart EQ
+published: false
+description: FreeEQ8 is a free/open-source 8-band parametric EQ plugin for producers, engineers, and developers. Here is the current project status, press coverage, and where the plugin is heading next.
+tags: audio, opensource, musicproduction, cpp
+cover_image:
+canonical_url:
+---
+
+# FreeEQ8 Current Status: Open-Source Parametric EQ, Rekkerd Coverage, and the Road to Smart EQ
+
+FreeEQ8 just hit an important milestone: it was covered by **Rekkerd.org**.
+
+That matters because FreeEQ8 is not a corporate plugin, not a locked-down commercial product, and not another vague “coming soon” idea. It is a real open-source audio plugin project built from the ground up for producers, engineers, developers, and bedroom studios that need serious tools without a $199 paywall.
+
+FreeEQ8 is my free/open-source 8-band parametric EQ plugin built with JUCE/C++.
+
+Repo:
+
+https://github.com/GareBear99/FreeEQ8
+
+Rekkerd coverage:
+
+https://rekkerd.org/free-freeeq8-parametric-eq-effect-plugin-by-gary-doman/
+
+---
+
+## Current Status
+
+```md
+<details>
+<summary><strong>Current Status — FreeEQ8</strong></summary>
+
+FreeEQ8 is actively developed as a free/open-source 8-band parametric EQ plugin for producers, engineers, and developers.
+
+- **Plugin type:** Parametric EQ / mixing effect
+- **Formats:** VST3 / AU / Standalone
+- **Platforms:** macOS available now; Windows/Linux build support documented
+- **Tested in:** Ableton Live 10+, REAPER, Logic Pro, FL Studio, Bitwig
+- **Coverage:** Featured by [Rekkerd.org](https://rekkerd.org/free-freeeq8-parametric-eq-effect-plugin-by-gary-doman/)
+
+</details>
+```
+
+That block is now being added near the top of the README so new users can quickly understand where the project stands.
+
+---
+
+## What FreeEQ8 Is
+
+FreeEQ8 is designed to be a free, open-source EQ that gives producers access to features usually found in paid mixing plugins.
+
+The goal is simple:
+
+> Build a serious free EQ that producers can actually use, developers can study, and the open-source audio community can improve.
+
+Current feature direction includes:
+
+- 8-band parametric EQ workflow
+- VST3 / AU / Standalone support
+- JUCE/C++ source code
+- real-time spectrum analyzer direction
+- dynamic EQ direction
+- linear phase direction
+- per-band drive/saturation direction
+- mid/side processing direction
+- oversampling direction
+- match EQ / smart EQ roadmap
+
+This is not just about making another EQ. It is about making a free tool that keeps moving toward serious production use.
+
+---
+
+## Why the Rekkerd Coverage Matters
+
+Independent open-source audio development is hard to get noticed in.
+
+There are thousands of plugins, abandoned repos, prototypes, experiments, and unfinished ideas. Getting covered by a music-production/plugin site like Rekkerd gives FreeEQ8 a real external signal.
+
+It means someone outside the project saw enough value in FreeEQ8 to write about it and send producers toward the repo.
+
+For a solo developer, that is a big milestone.
+
+It also helps with discoverability. People searching for terms like:
+
+- free parametric EQ plugin
+- open-source EQ plugin
+- JUCE EQ plugin
+- VST3 EQ
+- AU EQ
+- FreeEQ8
+- Gary Doman audio plugin
+- TizWildin plugin ecosystem
+
+now have another public path into the project.
+
+---
+
+## The Next Big Step: Smart EQ Layer
+
+The next real catapult move is the Smart EQ layer.
+
+Not fake AI hype. Not a black-box “magic mix” button.
+
+The idea is an explainable, deterministic mix-assist layer built directly into FreeEQ8.
+
+The workflow would look like this:
+
+```txt
+Analyze → Detect → Suggest → Preview → Apply
+```
+
+The smart layer should be able to detect common mix issues like:
+
+- muddiness
+- harshness
+- boxiness
+- boom
+- rumble
+- dullness
+- resonant peaks
+- stereo imbalance
+- frequency masking
+
+Then it should suggest moves clearly, like:
+
+```txt
+Detected low-mid buildup around 280 Hz.
+Suggested move: -2.4 dB, Q 1.2.
+Reason: reduces boxiness and improves clarity.
+```
+
+That is the important part: **explainable suggestions**.
+
+The producer should still be in control.
+
+FreeEQ8 should not pretend to replace ears. It should help users understand what is happening faster.
+
+---
+
+## Match EQ Direction
+
+Another major direction is a reference-guided Match EQ workflow.
+
+The basic idea:
+
+```txt
+Capture reference curve
+Capture current track curve
+Generate corrective EQ curve
+Blend amount from 0–100%
+```
+
+This could make FreeEQ8 much more useful for producers trying to understand tonal balance.
+
+The goal is not to “copy” a master perfectly. The goal is to give producers a practical starting point when comparing their mix against a reference.
+
+That kind of feature is usually locked behind expensive plugins.
+
+FreeEQ8 can bring that workflow into the open-source space.
+
+---
+
+## Why Open Source Matters Here
+
+A lot of modern audio tools are closed systems.
+
+You click a button, something changes, and the plugin tells you it is “AI.”
+
+FreeEQ8 is going in the opposite direction.
+
+The goal is:
+
+- visible logic
+- readable source
+- explainable decisions
+- producer control
+- developer learning
+- community testing
+- free access
+
+That is what makes this project different.
+
+It is not just “free as in price.”
+
+It is free as in:
+
+> you can inspect it, learn from it, build from it, test it, challenge it, and improve it.
+
+---
+
+## Where FreeEQ8 Fits
+
+FreeEQ8 is still growing, but the direction is clear.
+
+It sits in a rare lane:
+
+- free/open-source music production software
+- JUCE/C++ audio plugin development
+- producer-focused workflow
+- solo-developed DSP tooling
+- public roadmap
+- real GitHub repo
+- press coverage
+- smart EQ ambitions
+
+The long-term goal is to make FreeEQ8 one of the strongest free EQ options available to producers.
+
+Not because it has the biggest company behind it.
+
+Because it keeps improving in public.
+
+---
+
+## Links
+
+FreeEQ8 GitHub:
+
+https://github.com/GareBear99/FreeEQ8
+
+Rekkerd coverage:
+
+https://rekkerd.org/free-freeeq8-parametric-eq-effect-plugin-by-gary-doman/
+
+TizWildin Entertainment HUB:
+
+https://garebear99.github.io/TizWildinEntertainmentHUB/
+
+GitHub profile:
+
+https://github.com/GareBear99
+
+---
+
+## Closing
+
+FreeEQ8 getting covered by Rekkerd is a real milestone.
+
+The next step is bigger:
+
+Turn FreeEQ8 from a free parametric EQ into a smart, explainable, open-source EQ assistant.
+
+That is the direction.
+
+Free tools. Real DSP. Open source. No black box.

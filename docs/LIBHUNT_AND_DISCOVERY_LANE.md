@@ -72,10 +72,17 @@ AI Desk Meter is an open-source, local-first runtime dashboard foundation for Mu
 
 | Project | LibHunt | SaaSHub | AlternativeTo | Awesome list PRs | Notes |
 |---|---|---|---|---|---|
-| FreeEQ8 | TODO | TODO | TODO | TODO | flagship plugin |
-| ARC-Neuron LLMBuilder | TODO | TODO | TODO | TODO | local-first AI framework |
+| FreeEQ8 | LIVE — libhunt.com/GareBear99/FreeEQ8 | TODO | TODO | TODO | flagship plugin |
+| ARC-Neuron LLMBuilder | LIVE — libhunt.com/GareBear99/ARC-Neuron-LLMBuilder | TODO | TODO | TODO | local-first AI framework |
 | AI Desk Meter | TODO | TODO | TODO | TODO | MuseMeter open-source base |
 | Proto-Synth Grid Engine | TODO | TODO | TODO | TODO | visual synth/grid engine |
 | ARC-StreamMemory | TODO | TODO | TODO | TODO | stream memory module |
 | ARC Language Module | TODO | TODO | TODO | TODO | language/provenance spine |
-| TizWildin HUB | TODO | TODO | TODO | TODO | ecosystem router |
+| TizWildin HUB | LIVE — libhunt.com/GareBear99/TizWildinEntertainmentHUB | TODO | TODO | TODO | ecosystem router |
+
+LibHunt status of the awesome lists themselves (verified 2026-11-08):
+awesome-audio-plugins-dev is LIVE (libhunt.com/GareBear99/awesome-audio-plugins-dev);
+awesome-audio-lists, awesome-music-platforms, and awesome-python-audio-science
+have NO LibHunt page. ARC-Core is also LIVE
+(libhunt.com/GareBear99/ARC-Core). All live pages show "Last Commit, 6 months
+ago" — stale May 2026 snapshot; details unfinished.

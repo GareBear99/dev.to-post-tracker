@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://garebear99.github.io/dev.to-post-tracker/schemas/mongodb-receipt.schema.json",
+  "$id": "https://raw.githubusercontent.com/GareBear99/dev.to-post-tracker/main/data/schemas/mongodb-receipt.schema.json",
   "title": "DEV.to Syndication Receipt",
   "type": "object",
   "required": ["provider", "source", "receipt"],

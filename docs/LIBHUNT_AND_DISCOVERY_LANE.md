@@ -74,15 +74,17 @@ AI Desk Meter is an open-source, local-first runtime dashboard foundation for Mu
 |---|---|---|---|---|---|
 | FreeEQ8 | LIVE — libhunt.com/GareBear99/FreeEQ8 | TODO | TODO | TODO | flagship plugin |
 | ARC-Neuron LLMBuilder | LIVE — libhunt.com/GareBear99/ARC-Neuron-LLMBuilder | TODO | TODO | TODO | local-first AI framework |
-| AI Desk Meter | TODO | TODO | TODO | TODO | MuseMeter open-source base |
-| Proto-Synth Grid Engine | TODO | TODO | TODO | TODO | visual synth/grid engine |
-| ARC-StreamMemory | TODO | TODO | TODO | TODO | stream memory module |
-| ARC Language Module | TODO | TODO | TODO | TODO | language/provenance spine |
+| AI Desk Meter | LIVE — libhunt.com/GareBear99/ai-desk-meter | TODO | TODO | TODO | MuseMeter open-source base |
+| Proto-Synth Grid Engine | LIVE — libhunt.com/GareBear99/Proto-Synth_Grid_Engine | TODO | TODO | TODO | visual synth/grid engine |
+| ARC-StreamMemory | LIVE — libhunt.com/GareBear99/ARC-StreamMemory | TODO | TODO | TODO | stream memory module |
+| ARC Language Module | LIVE — libhunt.com/GareBear99/arc-language-module | TODO | TODO | TODO | language/provenance spine |
 | TizWildin HUB | LIVE — libhunt.com/GareBear99/TizWildinEntertainmentHUB | TODO | TODO | TODO | ecosystem router |
 
 LibHunt status of the awesome lists themselves (verified 2026-11-08):
 awesome-audio-plugins-dev is LIVE (libhunt.com/GareBear99/awesome-audio-plugins-dev);
 awesome-audio-lists, awesome-music-platforms, and awesome-python-audio-science
 have NO LibHunt page. ARC-Core is also LIVE
-(libhunt.com/GareBear99/ARC-Core). All live pages show "Last Commit, 6 months
-ago" — stale May 2026 snapshot; details unfinished.
+(libhunt.com/GareBear99/ARC-Core). ARC-StreamMemory, ai-desk-meter,
+Proto-Synth_Grid_Engine, and arc-language-module are also LIVE (verified
+2026-11-08) — the tracking table above is updated. All live pages show
+"Last Commit, 6 months ago" — stale May 2026 snapshot; details unfinished.
